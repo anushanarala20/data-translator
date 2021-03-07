@@ -9,7 +9,7 @@
     ```
   $ git clone https://github.com/anushanarala20/data-translator.git
   $ cd data-translator
-* Import the project into intelliJ or eclipse or any java based IDE.
+* Import the project into intelliJ or eclipse or any java based IDE as a gradle project.
 * run the `DataTranslatorExample.java`.
 * Final out put will be written and stored in `transnslatedData.txt`.
 
@@ -35,7 +35,7 @@
 
 Gradle is used as a build tool in this application, and we can generate a jar or war.
  * ```build.gradle``` - This file contains the application configuration
- * ```gradle clean``` - To clean the project 
+ * ```gradle clean build``` - To build the project and generate the war
  * ```gradle translatorJar``` - To generate jar
  * ```gradle war``` - to generate war 
 

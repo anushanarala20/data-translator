@@ -1,38 +1,44 @@
 # data-translator
 
+> Data Translator will perform ETL on the given data.
 
+## How to get started:
 
-**Specifications**:
-Read input file from vendorData.txt and manipulate the content using config1DataExtractor.txt and config2DataExtractor.txt,
-and write final data to translator.txt file.
+* Please ensure that JAVA 8 installed in your system
+* Please fallow below steps to clone the repository
+    ```
+  $ git clone https://github.com/anushanarala20/data-translator.git
+  $ cd data-translator
+* Import the project into intelliJ or eclipse or any java based IDE.
+* run the `DataTranslatorExample.java`.
+* Final out put will be written and stored in `transnslatedData.txt`.
 
-**Execution** :
-The main class DataTranslatorExample.java must be executed which picks all the specified input files and process the
-transformation of content, and final output are going to be generated.
+## How it works
 
-This application is capable of generating both jar and war.
- 1. Generate a jar/war files: Open the terminal or command prompt and execute below gradle
-    command
-    ``` gradle translatorJar ```
-    ```gradle war```
-     
+* Run the `DataTranslatorExample.java` programs to initiate the data translator.
+* `DataTranslator.java` is the facade for the ETL of the given input data.
+*  Data Translator will initiate two parallel threads one to read and transforms the data and one will write the transformed data to out put text file.
+*  **`ReadData`**: Will read the data line by line from `inputconfigData.txt` and transform the data based on the configuration given in `headerMappingConfigData.txt` and `RowMappingConfigData.txt`.
+*  The transformed data will be placed in `LinkedBlockingQueue` by ReadData. 
+*  **`WriteData`**: Reads data placed in `LinkedBlockingQueue` and writes the data into `translatedData.txt` file.
+*  ReadData acts as producer and WriteData act as consumer for blocking queue, Both works parallel and perform ETl on given data.
+*  The File paths and names were externalized to `DataTranslatorConstants.java`, if we need to update paths or file names we can update in DataTranslatorConstants class.
 
-**Configuration** :
+## Files Used:
 
-1. Once the DataTranslatorExample executes, the below java files performs required tasks.
-   DataTranslator.java - Read the content from VendorData.text, process each record.
-    ReadData.java - Read data from configuration files and process the data and generate final data
-    WriteData.java - Write the final data to the output file
-    FileIoUtils.java - This file contains the logic to read configuration files.
-   
-2. The below configuration files contains the input and output data.
-   vendorData.txt - This is the Input file which contains the data to be transformed.
-   config1DataExtractor.txt - This contains the data which specifies the columns needs to be fetched and transformed to expected columns.
-   config2DataExtractor.txt - This contains the data which specifies the required rows needs to be fetched and transformed to the expected identifiers.
-   translator.txt - This file contains output data which we write finalData.
+*   `inputconfigData.txt` - This is the Input file which contains the data to be transformed.
+*   `headerMappingConfigData.txt` - This contains the data which specifies the columns needs to be fetched and transformed to expected columns.
+*   `RowMappingConfigData` - This contains the data which specifies the required rows needs to be fetched and transformed to the expected identifiers.
+*   `translatedData.txt` - This file contains output data which we write finalData.
 
-**Notable points** :
-1. Multi Threading is implemented to process very big data files with big number of rows and columns.
+### Build Details
+
+Gradle is used as a build tool in this application, and we can generate a jar or war.
+ * ```build.gradle``` - This file contains the application configuration
+ * ```gradle clean``` - To clean the project 
+ * ```gradle translatorJar``` - To generate jar
+ * ```gradle war``` - to generate war 
+
 
 
 

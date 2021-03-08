@@ -1,7 +1,9 @@
 package read;
 
 import com.data.dataTranslator.read.ReadData;
-import org.junit.jupiter.api.Test;
+import com.data.dataTranslator.wriite.WriteData;
+import org.junit.After;
+import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.LinkedHashMap;
@@ -21,7 +23,16 @@ public class TestReadData {
         ReadData readData = new ReadData(linkedBlockingQueue, headerMappingConfigMap, rowMappingConfigMap);
         readData = Mockito.spy(readData);
         readData.run();
-        Mockito.verify(readData, Mockito.times(1)).run();
+        Mockito.verify(readData, Mockito.times(1));
     }
+
+    @Test(expected = NullPointerException.class)
+    public void runUnsuccessfulForHeaders() {
+        headerMappingConfigMap = null;
+        ReadData readData = new ReadData(linkedBlockingQueue, headerMappingConfigMap, rowMappingConfigMap);
+        readData.run();
+    }
+
+
 
 }

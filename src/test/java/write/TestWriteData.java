@@ -1,7 +1,7 @@
 package write;
 
 import com.data.dataTranslator.wriite.WriteData;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
@@ -22,10 +22,16 @@ public class TestWriteData {
         stringList.add("break");
         linkedBlockingQueue.put(stringList);
         WriteData writeData = new WriteData(linkedBlockingQueue);
-        writeData = Mockito.spy(writeData);
         writeData.run();
-        Mockito.verify(writeData, Mockito.times(1)).run();
     }
+
+    @Test(expected = NullPointerException.class)
+    public void runUnsuccessfully() {
+        LinkedBlockingQueue<List<String>> linkedBlockingQueue = null;
+        WriteData writeData = new WriteData(linkedBlockingQueue);
+        writeData.run();
+    }
+
 
 
 }

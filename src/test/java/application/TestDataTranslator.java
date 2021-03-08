@@ -3,7 +3,7 @@ package application;
 import com.data.dataTranslator.application.DataTranslator;
 import com.data.dataTranslator.read.ReadData;
 import com.data.dataTranslator.wriite.WriteData;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.*;
@@ -32,6 +32,5 @@ public class TestDataTranslator {
         dataTranslator = Mockito.spy(dataTranslator);
         dataTranslator.processVendorFileContent();
         Mockito.verify(dataTranslator, Mockito.times(1)).processVendorFileContent();
-
     }
 }

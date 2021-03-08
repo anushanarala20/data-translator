@@ -46,7 +46,7 @@ public class DataTranslator {
      *
      * @throws Exception
      */
-    public void processVendorFileContent() throws Exception {
+    public void processVendorFileContent() throws InterruptedException {
         try {
             resetFileContent();
             LinkedBlockingQueue<List<String>> linkedBlockingQueue = new LinkedBlockingQueue<>();
@@ -58,7 +58,7 @@ public class DataTranslator {
             t2.start();
             t1.join();
             t2.join();
-        } catch (Exception exp) {
+        } catch (InterruptedException exp) {
             logger.error(exp.getMessage(), exp);
             throw exp;
         }
